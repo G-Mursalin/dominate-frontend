@@ -23,7 +23,17 @@ function App() {
         <Route path="/addcar" element={<AddCars />} />
         <Route path="/managecar/:id" element={<ManageCar />} />
       </Routes>
-      <ToastContainer />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Fragment>
   );
 }

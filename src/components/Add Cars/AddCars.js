@@ -30,6 +30,8 @@ const AddCars = () => {
       .then((data) => {
         toast("Car Added Successfully 😃");
       });
+
+    e.target.reset();
   };
   return (
     <form onSubmit={handleForm} className="text-gray-600 body-font relative">
