@@ -1,5 +1,15 @@
+// React-React DOM
+import { Fragment, React } from "react";
+// Components
+import NavBar from "./components/NavBar/NavBar";
+import Home from "./Home/Home";
 function App() {
-  return <div></div>;
+  return (
+    <Fragment>
+      <NavBar />
+      <Home />
+    </Fragment>
+  );
 }
 
 export default App;
