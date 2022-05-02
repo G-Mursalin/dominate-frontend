@@ -2,11 +2,13 @@
 import React from "react";
 import { Fragment } from "react";
 // Components
-import Hero from "./Hero";
+import Hero from "./Hero/Hero";
+import OnlyForYou from "./OnlyForYou/OnlyForYou";
 const Home = () => {
   return (
     <Fragment>
       <Hero />
+      <OnlyForYou />
     </Fragment>
   );
 };
