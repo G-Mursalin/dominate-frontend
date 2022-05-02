@@ -7,6 +7,11 @@ import Table from "../Utilities/Table/Table";
 const ManageInventories = () => {
   // Load data from custom hook
   const [cars, setCars] = useLoadData();
+  //Handle Delete UI
+  const handleDeleteUI = (id) => {
+    console.log(id);
+    setCars((prevData) => prevData.filter((val) => val._id !== id));
+  };
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md py-20">
@@ -31,7 +36,11 @@ const ManageInventories = () => {
             </tr>
           </thead>
           {cars.map((car) => (
-            <Table key={car._id} carInfo={car} />
+            <Table
+              key={car._id}
+              carInfo={car}
+              handleDeleteUI={handleDeleteUI}
+            />
           ))}
         </table>
       </div>
