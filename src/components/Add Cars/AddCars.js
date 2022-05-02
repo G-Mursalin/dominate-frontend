@@ -1,5 +1,8 @@
+// React-React DOM
 import React from "react";
-
+// React Tostify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const AddCars = () => {
   // Form handle an send data to server
 
@@ -25,7 +28,7 @@ const AddCars = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        toast("Car Added Successfully 😃");
       });
   };
   return (

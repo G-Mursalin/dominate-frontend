@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = (props) => {
-  const { name, img, price, description, available, supplierName } =
+  const { name, img, price, description, available, supplierName, _id } =
     props.carInfo;
 
   return (
@@ -17,12 +18,12 @@ const Card = (props) => {
           <p>Available Car: {available}</p>
           <p> Supplier Name: {supplierName}</p>
         </div>
-        <a
-          href="/"
+        <Link
+          to={`/managecar/${_id}`}
           className="inline-flex items-center justify-center text-white bg-green-500 border-0 py-2 px-6 mt-5 focus:outline-none hover:bg-green-600 rounded text-lg"
         >
           Update
-        </a>
+        </Link>
       </div>
     </div>
   );
