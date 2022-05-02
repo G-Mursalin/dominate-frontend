@@ -13,7 +13,7 @@ const ManageInventories = () => {
     setCars((prevData) => prevData.filter((val) => val._id !== id));
   };
   return (
-    <div className="mt-24">
+    <div className="my-24">
       <div className="text-center">
         <Link
           to="/addcar"

@@ -1,13 +1,28 @@
 // React React DOM
 import React, { useState, useEffect } from "react";
 // Routing
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 // React Tostify
 import { toast } from "react-toastify";
 const ManageCar = () => {
   //Get if from URL
   const { id } = useParams();
   const [car, setCar] = useState({});
+
+  const updatedData = (data) => {
+    fetch(`http://localhost:5000/car/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        toast("Restock Successfully");
+      });
+  };
+
   //Handle Restock
   const handleRestock = (e) => {
     e.preventDefault();
@@ -23,17 +38,7 @@ const ManageCar = () => {
       };
     });
     // Send to server
-    fetch(`http://localhost:5000/car/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(carUpdate),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        toast("Restock Successfully");
-      });
+    updatedData(carUpdate);
     e.target.reset();
   };
   //Handle Car Delivered
@@ -46,17 +51,8 @@ const ManageCar = () => {
         return { ...preData, available: car.available - 1 };
       });
     }
-    fetch(`http://localhost:5000/car/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(carUpdate),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        toast("Delivered Successfully");
-      });
+    // Send Data to server
+    updatedData(carUpdate);
   };
   // Load one data using id
   useEffect(() => {
@@ -98,6 +94,14 @@ const ManageCar = () => {
                 >
                   Delivered This Car&nbsp;&rarr;
                 </button>
+                <div className="mt-5">
+                  <Link
+                    to="/manageinventories"
+                    className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+                  >
+                    Manage Inventories&nbsp;&rarr;
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
@@ -135,7 +139,7 @@ const ManageCar = () => {
                         <input
                           type="submit"
                           value="Add To Stock"
-                          className="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
+                          className="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg cursor-pointer"
                         />
                       </div>
                     </div>

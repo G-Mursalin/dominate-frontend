@@ -11,6 +11,8 @@ import Inventory from "./components/Inventory/Inventory";
 import ManageInventories from "./components/Manage Inventories/ManageInventories";
 import AddCars from "./components/Add Cars/AddCars";
 import ManageCar from "./components/Manage Car/ManageCar";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
+import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <Fragment>
@@ -22,7 +24,9 @@ function App() {
         <Route path="/manageinventories" element={<ManageInventories />} />
         <Route path="/addcar" element={<AddCars />} />
         <Route path="/managecar/:id" element={<ManageCar />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <Footer />
       <ToastContainer
         position="bottom-right"
         autoClose={1000}
