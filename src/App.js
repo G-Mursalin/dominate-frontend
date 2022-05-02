@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
 import Inventory from "./components/Inventory/Inventory";
 import ManageInventories from "./components/Manage Inventories/ManageInventories";
+import AddCars from "./components/Add Cars/AddCars";
 function App() {
   return (
     <Fragment>
@@ -16,6 +17,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/manageinventories" element={<ManageInventories />} />
+        <Route path="/addcar" element={<AddCars />} />
       </Routes>
     </Fragment>
   );

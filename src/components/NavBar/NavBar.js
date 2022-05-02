@@ -63,6 +63,20 @@ const NavBar = () => {
                   Manage Inventories
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/addcar"
+                  style={({ isActive }) => {
+                    return {
+                      color: isActive ? "#22c55e" : "",
+                    };
+                  }}
+                  aria-label="Our product"
+                  className="font-medium tracking-wide text-gray-200  transition-colors duration-200 hover:text-teal-accent-400"
+                >
+                  Add Car
+                </NavLink>
+              </li>
             </ul>
           </div>
           <ul className="flex items-center hidden space-x-8 lg:flex">
@@ -177,6 +191,16 @@ const NavBar = () => {
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Manage Inventory
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/addcar"
+                          onClick={() => setIsMenuOpen(false)}
+                          aria-label="Our product"
+                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        >
+                          Add User
                         </Link>
                       </li>
                     </ul>

@@ -4,17 +4,25 @@ import React from "react";
 import useLoadData from "../useHook/useLoadData";
 // Components
 import Table from "../Utilities/Table/Table";
+import { Link } from "react-router-dom";
 const ManageInventories = () => {
   // Load data from custom hook
   const [cars, setCars] = useLoadData();
   //Handle Delete UI
   const handleDeleteUI = (id) => {
-    console.log(id);
     setCars((prevData) => prevData.filter((val) => val._id !== id));
   };
   return (
-    <div>
-      <div className="relative overflow-x-auto shadow-md py-20">
+    <div className="mt-24">
+      <div className="text-center">
+        <Link
+          to="/addcar"
+          className="bg-transparent hover:bg-green-500 text-green-500 font-semibold hover:text-white py-2 px-4 border border-green-600 hover:border-transparent rounded"
+        >
+          Add Cars&nbsp;&rarr;
+        </Link>
+      </div>
+      <div className="relative overflow-x-auto shadow-md py-5">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
