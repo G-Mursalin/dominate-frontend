@@ -1,6 +1,10 @@
-import React from "react";
+// React-React DOM
+import React, { useState } from "react";
+// Components
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const SignUp = () => {
+  const [agree, setAgree] = useState(true);
   return (
     <section className="text-gray-600 body-font">
       <form className="px-16 py-24 lg:w-1/2 w-full mx-auto">
@@ -46,12 +50,30 @@ const SignUp = () => {
               className="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
+          <div className="mb-4">
+            <input
+              onClick={() => setAgree(!agree)}
+              type="checkbox"
+              name="terms"
+              id="terms"
+            />
+            <label
+              htmlFor="terms"
+              className={`pl-2 ${agree ? "text-red-600" : ""}`}
+            >
+              Accept Terms and Conditions
+            </label>
+          </div>
           <input
             type="submit"
             value="Sign Up"
-            className="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg cursor-pointer"
+            disabled={agree}
+            className={`text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg cursor-pointer ${
+              agree ? "cursor-not-allowed" : ""
+            }`}
           />
         </div>
+        <SocialLogin />
       </form>
     </section>
   );

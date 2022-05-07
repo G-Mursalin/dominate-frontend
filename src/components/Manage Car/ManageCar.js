@@ -18,9 +18,7 @@ const ManageCar = () => {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((data) => {
-        toast("Re-stock Successfully");
-      });
+      .then((data) => {});
   };
 
   //Handle Restock
@@ -40,6 +38,7 @@ const ManageCar = () => {
     // Send to server
     updatedData(carUpdate);
     e.target.reset();
+    toast("Re-stock Successfully");
   };
   //Handle Car Delivered
   const handleDeliver = (operation) => {
@@ -53,6 +52,7 @@ const ManageCar = () => {
     }
     // Send Data to server
     updatedData(carUpdate);
+    toast("Delivered Successfully");
   };
   // Load one data using id
   useEffect(() => {

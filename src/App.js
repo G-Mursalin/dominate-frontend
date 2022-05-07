@@ -15,6 +15,7 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import SignIn from "./components/Authentication/SignIn/SignIn";
 import SignUp from "./components/Authentication/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
+import RequireAuth from "./components/Authentication/RequireAuth/RequireAuth";
 function App() {
   return (
     <Fragment>
@@ -24,8 +25,22 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/manageinventories" element={<ManageInventories />} />
-        <Route path="/addcar" element={<AddCars />} />
-        <Route path="/managecar/:id" element={<ManageCar />} />
+        <Route
+          path="/addcar"
+          element={
+            <RequireAuth>
+              <AddCars />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/managecar/:id"
+          element={
+            <RequireAuth>
+              <ManageCar />
+            </RequireAuth>
+          }
+        />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<PageNotFound />} />

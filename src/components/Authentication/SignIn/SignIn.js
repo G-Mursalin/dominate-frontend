@@ -1,5 +1,8 @@
+// React-React DOM
 import React from "react";
-
+import { Link } from "react-router-dom";
+// Components
+import SocialLogin from "../SocialLogin/SocialLogin";
 const SignIn = () => {
   return (
     <section className="text-gray-600 body-font">
@@ -35,12 +38,24 @@ const SignIn = () => {
               className="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
-          <input
-            type="submit"
-            value="Sign In"
-            className="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg cursor-pointer"
-          />
+          <div className="flex items-center justify-between mt-3 mb-5">
+            <input
+              type="submit"
+              value="Sign In"
+              className="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg cursor-pointer"
+            />
+            <p className="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-500 cursor-pointer">
+              Reset Password?
+            </p>
+          </div>
+          <p className="text-center text-md font-medium">
+            Don't have an account?
+            <Link to="/signup" className="font-bold text-md text-indigo-600">
+              Create
+            </Link>
+          </p>
         </div>
+        <SocialLogin />
       </form>
     </section>
   );

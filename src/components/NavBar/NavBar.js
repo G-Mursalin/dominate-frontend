@@ -1,9 +1,18 @@
+// React React-DOM
 import React, { useState } from "react";
+// Routing
 import { Link, NavLink } from "react-router-dom";
+// Components
 import Inventory from "./../Inventory/Inventory";
-
+// Firebase
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../Authentication/Firebase/firebase.init";
+import { signOut } from "firebase/auth";
+import { Fragment } from "react";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // Firebase Hook
+  const [user] = useAuthState(auth);
   return (
     <nav className="bg-gray-900 px-16 py-3 mx-auto fixed z-10 top-0 w-full">
       <div className="">
@@ -80,36 +89,51 @@ const NavBar = () => {
             </ul>
           </div>
           <ul className="flex items-center hidden space-x-8 lg:flex">
-            <li>
-              <NavLink
-                to="/signin"
-                style={({ isActive }) => {
-                  return {
-                    color: isActive ? "#22c55e" : "",
-                  };
-                }}
-                aria-label="Sign in"
-                title="Sign in"
-                className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-              >
-                Sign in
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/signup"
-                style={({ isActive }) => {
-                  return {
-                    color: isActive ? "#22c55e" : "",
-                  };
-                }}
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign up
-              </NavLink>
-            </li>
+            {user ? (
+              <li>
+                <p
+                  aria-label="Sign Out"
+                  onClick={() => signOut(auth)}
+                  title="Sign Out"
+                  className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 cursor-pointer py-3"
+                >
+                  Sign Out
+                </p>
+              </li>
+            ) : (
+              <Fragment>
+                <li>
+                  <NavLink
+                    to="/signin"
+                    style={({ isActive }) => {
+                      return {
+                        color: isActive ? "#22c55e" : "",
+                      };
+                    }}
+                    aria-label="Sign in"
+                    title="Sign in"
+                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                  >
+                    Sign in
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/signup"
+                    style={({ isActive }) => {
+                      return {
+                        color: isActive ? "#22c55e" : "",
+                      };
+                    }}
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                    aria-label="Sign up"
+                    title="Sign up"
+                  >
+                    Sign up
+                  </NavLink>
+                </li>
+              </Fragment>
+            )}
           </ul>
           <div className="lg:hidden">
             <button
@@ -213,26 +237,41 @@ const NavBar = () => {
                           Add Car
                         </Link>
                       </li>
-                      <li>
-                        <Link
-                          to="/signin"
-                          onClick={() => setIsMenuOpen(false)}
-                          aria-label="Our product"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          Sign In
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/signup"
-                          onClick={() => setIsMenuOpen(false)}
-                          aria-label="Our product"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          Sign Up
-                        </Link>
-                      </li>
+                      {user ? (
+                        <li>
+                          <p
+                            aria-label="Sign Out"
+                            onClick={() => signOut(auth)}
+                            title="Sign Out"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            Sign Out
+                          </p>
+                        </li>
+                      ) : (
+                        <Fragment>
+                          <li>
+                            <Link
+                              to="/signin"
+                              onClick={() => setIsMenuOpen(false)}
+                              aria-label="Our product"
+                              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            >
+                              Sign In
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/signup"
+                              onClick={() => setIsMenuOpen(false)}
+                              aria-label="Our product"
+                              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                            >
+                              Sign Up
+                            </Link>
+                          </li>
+                        </Fragment>
+                      )}
                     </ul>
                   </nav>
                 </div>
