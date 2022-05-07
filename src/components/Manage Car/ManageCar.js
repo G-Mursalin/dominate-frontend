@@ -19,7 +19,7 @@ const ManageCar = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        toast("Restock Successfully");
+        toast("Re-stock Successfully");
       });
   };
 
@@ -112,7 +112,7 @@ const ManageCar = () => {
                 <div className="container px-5 mx-auto">
                   <div className="flex flex-col text-center w-full mb-12">
                     <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
-                      Restock The Car
+                      Re-stock The Car
                     </h1>
                   </div>
                   <div className="lg:w-1/2 md:w-2/3 mx-auto">

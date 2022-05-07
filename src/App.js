@@ -12,6 +12,8 @@ import ManageInventories from "./components/Manage Inventories/ManageInventories
 import AddCars from "./components/Add Cars/AddCars";
 import ManageCar from "./components/Manage Car/ManageCar";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
+import SignIn from "./components/Authentication/SignIn/SignIn";
+import SignUp from "./components/Authentication/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/manageinventories" element={<ManageInventories />} />
         <Route path="/addcar" element={<AddCars />} />
         <Route path="/managecar/:id" element={<ManageCar />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />

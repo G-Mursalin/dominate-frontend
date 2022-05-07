@@ -81,24 +81,34 @@ const NavBar = () => {
           </div>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
-              <a
-                href="/"
+              <NavLink
+                to="/signin"
+                style={({ isActive }) => {
+                  return {
+                    color: isActive ? "#22c55e" : "",
+                  };
+                }}
                 aria-label="Sign in"
                 title="Sign in"
                 className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
               >
                 Sign in
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a
-                href="/"
+              <NavLink
+                to="/signup"
+                style={({ isActive }) => {
+                  return {
+                    color: isActive ? "#22c55e" : "",
+                  };
+                }}
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
                 title="Sign up"
               >
                 Sign up
-              </a>
+              </NavLink>
             </li>
           </ul>
           <div className="lg:hidden">
@@ -201,6 +211,26 @@ const NavBar = () => {
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
                           Add Car
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/signin"
+                          onClick={() => setIsMenuOpen(false)}
+                          aria-label="Our product"
+                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        >
+                          Sign In
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to="/signup"
+                          onClick={() => setIsMenuOpen(false)}
+                          aria-label="Our product"
+                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                        >
+                          Sign Up
                         </Link>
                       </li>
                     </ul>
