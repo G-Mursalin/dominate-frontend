@@ -17,7 +17,7 @@ const ManageInventories = () => {
 
   setTimeout(() => {
     setLoading(false);
-  }, 1000);
+  }, 600);
 
   if (loading) {
     return <Loading />;

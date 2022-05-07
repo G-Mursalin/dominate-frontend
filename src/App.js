@@ -14,6 +14,7 @@ import ManageCar from "./components/Manage Car/ManageCar";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import SignIn from "./components/Authentication/SignIn/SignIn";
 import SignUp from "./components/Authentication/SignUp/SignUp";
+import MyAddCars from "./components/MyAddCars/MyAddCars";
 import Footer from "./components/Footer/Footer";
 import RequireAuth from "./components/Authentication/RequireAuth/RequireAuth";
 function App() {
@@ -41,6 +42,7 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route path="/myaddcars" element={<MyAddCars />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<PageNotFound />} />

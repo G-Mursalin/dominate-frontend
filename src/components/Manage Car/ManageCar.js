@@ -80,13 +80,20 @@ const ManageCar = () => {
                 </h2>
                 <div className="w-12 h-1 bg-green-500 rounded mt-2 mb-4"></div>
                 <p className="text-base">Price: ${car.price}</p>
-                <p className="text-base my-3">
+                <p className="text-base my-2">
                   Supplier Name: {car.supplierName}
                 </p>
                 <p className="text-base flex justify-center">
                   <span className="mr-2"> Available Car:</span>
                   <span className="text-lg font-bold">{car.available}</span>
                 </p>
+                {car.available === 0 ? (
+                  <p className="text-base flex justify-center">
+                    <span className="my-2 text-red-700">This Car Sold Out</span>
+                  </p>
+                ) : (
+                  ""
+                )}
                 <button
                   to="inventory"
                   onClick={() => handleDeliver("-")}

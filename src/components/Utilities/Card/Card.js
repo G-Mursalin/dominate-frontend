@@ -15,7 +15,11 @@ const Card = (props) => {
           <p className="text-2xl font-bold  font-semibold">{name}</p>
           <p>Price: ${price}</p>
           <p className="text-sm text-gray-900 my-8">{description}</p>
-          <p>Available Car: {available}</p>
+          {!available ? (
+            <p className=" text-red-700">This Car Sold Out</p>
+          ) : (
+            <p>Available Car: {available}</p>
+          )}
           <p> Supplier Name: {supplierName}</p>
         </div>
         <Link

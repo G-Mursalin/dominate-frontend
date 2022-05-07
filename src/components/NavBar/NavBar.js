@@ -86,6 +86,24 @@ const NavBar = () => {
                   Add Car
                 </NavLink>
               </li>
+              {user ? (
+                <li>
+                  <NavLink
+                    to="/myaddcars"
+                    style={({ isActive }) => {
+                      return {
+                        color: isActive ? "#22c55e" : "",
+                      };
+                    }}
+                    aria-label="Our product"
+                    className="font-medium tracking-wide text-gray-200  transition-colors duration-200 hover:text-teal-accent-400"
+                  >
+                    My Add Cars
+                  </NavLink>
+                </li>
+              ) : (
+                ""
+              )}
             </ul>
           </div>
           <ul className="flex items-center hidden space-x-8 lg:flex">

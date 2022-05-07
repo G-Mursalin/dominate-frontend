@@ -1,11 +1,15 @@
 // React-React DOM
 import React from "react";
+// Firebase
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../Authentication/Firebase/firebase.init";
 // React Tostify
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const AddCars = () => {
+  // Firebase Hook
+  const [user] = useAuthState(auth);
   // Form handle an send data to server
-
   const handleForm = (e) => {
     e.preventDefault();
     // Collect data
@@ -16,6 +20,7 @@ const AddCars = () => {
       description: e.target.description.value,
       available: e.target.numberOfCar.value,
       supplierName: e.target.supplierName.value,
+      email: user.email,
     };
 
     // Send data to server
