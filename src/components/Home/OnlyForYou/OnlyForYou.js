@@ -5,10 +5,19 @@ import { Link } from "react-router-dom";
 import useLoadData from "../../useHook/useLoadData";
 // Components
 import Card from "../../Utilities/Card/Card";
-
+import Loading from "../../Utilities/Loading/Loading";
 const OnlyForYou = () => {
+  const [loading, setLoading] = useState(true);
   // Load data from custom hook
   const [cars, setCars] = useLoadData(6);
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 1000);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <section className="px-16 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">

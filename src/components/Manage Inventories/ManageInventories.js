@@ -1,17 +1,27 @@
 // React-React DOM
-import React from "react";
+import React, { useState } from "react";
 // Custom Hooks
 import useLoadData from "../useHook/useLoadData";
 // Components
 import Table from "../Utilities/Table/Table";
 import { Link } from "react-router-dom";
+import Loading from "../Utilities/Loading/Loading";
 const ManageInventories = () => {
+  const [loading, setLoading] = useState(true);
   // Load data from custom hook
   const [cars, setCars] = useLoadData();
   //Handle Delete UI
   const handleDeleteUI = (id) => {
     setCars((prevData) => prevData.filter((val) => val._id !== id));
   };
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 1000);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="my-24">
       <div className="text-center">
