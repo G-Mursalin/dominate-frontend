@@ -28,6 +28,7 @@ const Card = (props) => {
         >
           Stock Update
         </Link>
+        {props.children}
       </div>
     </div>
   );

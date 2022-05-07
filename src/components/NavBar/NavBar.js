@@ -1,7 +1,8 @@
 // React React-DOM
 import React, { useState } from "react";
 // Routing
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
 // Components
 import Inventory from "./../Inventory/Inventory";
 // Firebase
@@ -11,6 +12,7 @@ import { signOut } from "firebase/auth";
 import { Fragment } from "react";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
   // Firebase Hook
   const [user] = useAuthState(auth);
   return (
@@ -111,7 +113,10 @@ const NavBar = () => {
               <li>
                 <p
                   aria-label="Sign Out"
-                  onClick={() => signOut(auth)}
+                  onClick={() => {
+                    signOut(auth);
+                    navigate("/");
+                  }}
                   title="Sign Out"
                   className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400 cursor-pointer py-3"
                 >
@@ -259,7 +264,11 @@ const NavBar = () => {
                         <li>
                           <p
                             aria-label="Sign Out"
-                            onClick={() => signOut(auth)}
+                            onClick={() => {
+                              setIsMenuOpen(false);
+                              signOut(auth);
+                              navigate("/");
+                            }}
                             title="Sign Out"
                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                           >
