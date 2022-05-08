@@ -2,6 +2,13 @@
 import React from "react";
 // Modal
 import Modal from "react-modal";
+// Firebase
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../Authentication/Firebase/firebase.init";
+// React Toast
+import { toast } from "react-toastify";
+// Routing
+import { useNavigate } from "react-router-dom";
 const customStyles = {
   content: {
     top: "50%",
@@ -16,13 +23,24 @@ Modal.setAppElement("#root");
 
 const Table = (props) => {
   const { name, price, available, supplierName, _id } = props.carInfo;
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
   // Handel Delete Functionality
   const handelDelete = () => {
-    fetch(`http://localhost:5000/car/${_id}`, { method: "DELETE" })
+    fetch(`http://localhost:5000/car/${_id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
-        if (data.deletedCount > 0) {
+        if (data.success === "Delete successfully") {
+          toast("Delete successfully");
           props.handleDeleteUI(_id);
+        } else {
+          navigate("/unauthorizeaccess");
         }
       });
   };
