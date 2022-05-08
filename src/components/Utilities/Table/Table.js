@@ -71,7 +71,7 @@ const Table = (props) => {
         >
           {name}
         </th>
-        <td className="px-6 py-4">{available ? available : "Sold Out"}</td>
+        <td className="px-6 py-4">{+available ? available : "Sold Out"}</td>
         <td className="px-6 py-4">{supplierName}</td>
         <td className="px-6 py-4">${price}</td>
         <td className="px-6 py-4 text-right">

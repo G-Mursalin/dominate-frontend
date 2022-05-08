@@ -56,7 +56,7 @@ const ManageCar = () => {
   //Handle Car Delivered
   const handleDeliver = (operation) => {
     let carUpdate;
-    if (car.available === 0) return;
+    if (+car.available === 0) return;
     if (operation === "-") {
       carUpdate = { available: car.available - 1 };
       setCar((preData) => {
@@ -99,7 +99,7 @@ const ManageCar = () => {
                   <span className="mr-2"> Available Car:</span>
                   <span className="text-lg font-bold">{car.available}</span>
                 </p>
-                {car.available === 0 ? (
+                {+car.available === 0 ? (
                   <p className="text-base flex justify-center">
                     <span className="my-2 text-red-700">This Car Sold Out</span>
                   </p>

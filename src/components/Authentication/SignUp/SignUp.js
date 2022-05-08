@@ -12,6 +12,7 @@ import {
   useSendEmailVerification,
 } from "react-firebase-hooks/auth";
 import auth from "../Firebase/firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
 const SignUp = () => {
   const navigate = useNavigate();
   // Firebase Hooks
@@ -19,6 +20,7 @@ const SignUp = () => {
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
   // React Hook
   const [agree, setAgree] = useState(true);
+  const [userInfo] = useAuthState(auth);
   //   Form Handler
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -30,7 +32,22 @@ const SignUp = () => {
   };
 
   if (user) {
-    navigate("/home");
+    // Generate token
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: userInfo.email }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem("accessToken", data.token);
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error("Error:", error.message);
+      });
   }
   if (loading) {
     return <Loading />;

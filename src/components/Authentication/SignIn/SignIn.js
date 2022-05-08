@@ -107,8 +107,12 @@ const SignIn = () => {
             />
             <p
               onClick={async () => {
-                await sendPasswordResetEmail(email);
-                toast("Reset link send to your email");
+                if (!email) {
+                  toast("Please Insert email");
+                } else {
+                  await sendPasswordResetEmail(email);
+                  toast("Reset link send to your email");
+                }
               }}
               className="inline-block align-baseline font-bold text-sm text-indigo-600 hover:text-indigo-500 cursor-pointer"
             >
