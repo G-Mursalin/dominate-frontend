@@ -11,6 +11,7 @@ import Inventory from "./components/Inventory/Inventory";
 import ManageInventories from "./components/Manage Inventories/ManageInventories";
 import AddCars from "./components/Add Cars/AddCars";
 import ManageCar from "./components/Manage Car/ManageCar";
+import UnauthorizeAccess from "./components/UnauthorizeAccess/UnauthorizeAccess";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import SignIn from "./components/Authentication/SignIn/SignIn";
 import SignUp from "./components/Authentication/SignUp/SignUp";
@@ -45,6 +46,7 @@ function App() {
         <Route path="/myaddcars" element={<MyAddCars />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/unauthorizeaccess" element={<UnauthorizeAccess />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />

@@ -6,8 +6,10 @@ import auth from "../Authentication/Firebase/firebase.init";
 // Components
 import Card from "../Utilities/Card/Card";
 import Loading from "../Utilities/Loading/Loading";
+
 // Routing
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 // Modal
 import Modal from "react-modal";
 const customStyles = {
@@ -28,6 +30,8 @@ const MyAddCars = () => {
   const [id, setId] = useState(null);
   // Firebase
   const [user] = useAuthState(auth);
+  // Routing
+  const navigate = useNavigate();
   //Get Data from server
   useEffect(() => {
     setLoading(true);
@@ -60,10 +64,20 @@ const MyAddCars = () => {
   }
   //   Handle Delete Item
   const handelDelete = () => {
-    fetch(`http://localhost:5000/car/${id}`, { method: "DELETE" })
+    fetch(`http://localhost:5000/car/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
-        setData((prevData) => prevData.filter((val) => val._id !== id));
+        if (data.success === "Delete successfully") {
+          setData((prevData) => prevData.filter((val) => val._id !== id));
+        } else {
+          navigate("/unauthorizeaccess");
+        }
       });
   };
 

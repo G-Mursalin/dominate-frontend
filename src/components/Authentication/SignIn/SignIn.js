@@ -10,6 +10,7 @@ import {
   useSignInWithEmailAndPassword,
   useSendPasswordResetEmail,
 } from "react-firebase-hooks/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 // Toastify
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,6 +26,7 @@ const SignIn = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+  const [userInfo] = useAuthState(auth);
   //   Handle Form
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -35,7 +37,22 @@ const SignIn = () => {
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
   if (user) {
-    navigate(from, { replace: true });
+    // Secure api
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: userInfo.email }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem("accessToken", data.token);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error("Error:", error.message);
+      });
   }
 
   if (loading) {
