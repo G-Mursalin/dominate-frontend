@@ -35,3 +35,7 @@ Link: [https://dominate-db3ff.web.app/](https://dominate-db3ff.web.app/)
 - Find your best car
 - Car details
 - Show your cars you added
+
+# Stackoverflow Question Link:
+
+Link: [https://stackoverflow.com/questions/72161690/how-do-i-get-all-dates-of-fridays-of-a-particular-year-in-javascript](https://stackoverflow.com/questions/72161690/how-do-i-get-all-dates-of-fridays-of-a-particular-year-in-javascript)
