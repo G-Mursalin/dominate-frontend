@@ -1,5 +1,7 @@
 // React-React DOM
 import React from "react";
+// Routing
+import { useNavigate } from "react-router-dom";
 // Firebase
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../Authentication/Firebase/firebase.init";
@@ -9,6 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 const AddCars = () => {
   // Firebase Hook
   const [user] = useAuthState(auth);
+  // Routing
+  const navigate = useNavigate();
   // Form handle an send data to server
   const handleForm = (e) => {
     e.preventDefault();
@@ -27,13 +31,18 @@ const AddCars = () => {
     fetch("http://localhost:5000/addcar", {
       method: "POST",
       headers: {
+        authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(carDetails),
     })
       .then((response) => response.json())
       .then((data) => {
-        toast("Car Added Successfully 😃");
+        if (data.success === "Updated successfully") {
+          toast("Car Added Successfully 😃");
+        } else {
+          navigate("/unauthorizeaccess");
+        }
       });
 
     e.target.reset();
@@ -108,9 +117,10 @@ const AddCars = () => {
                   Number of car
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="quantity"
                   name="numberOfCar"
+                  min="1"
                   required
                   className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
@@ -153,7 +163,7 @@ const AddCars = () => {
               <input
                 type="submit"
                 value="Add Car"
-                className="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
+                className="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg cursor-pointer"
               />
             </div>
           </div>

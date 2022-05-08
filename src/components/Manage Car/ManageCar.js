@@ -1,24 +1,38 @@
 // React React DOM
 import React, { useState, useEffect } from "react";
 // Routing
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 // React Tostify
 import { toast } from "react-toastify";
+// Firebase
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../Authentication/Firebase/firebase.init";
+
 const ManageCar = () => {
   //Get if from URL
   const { id } = useParams();
   const [car, setCar] = useState({});
-
-  const updatedData = (data) => {
+  // Firebase Hook
+  const [user] = useAuthState(auth);
+  // Routing
+  const navigate = useNavigate();
+  const updatedData = (data, status) => {
     fetch(`http://localhost:5000/car/${id}`, {
       method: "PUT",
       headers: {
+        authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((data) => {});
+      .then((data) => {
+        if (data.success === "Unauthorize Access") {
+          navigate("/unauthorizeaccess");
+        } else {
+          toast(`${status} successfully`);
+        }
+      });
   };
 
   //Handle Restock
@@ -36,9 +50,8 @@ const ManageCar = () => {
       };
     });
     // Send to server
-    updatedData(carUpdate);
+    updatedData(carUpdate, "Re-stock");
     e.target.reset();
-    toast("Re-stock Successfully");
   };
   //Handle Car Delivered
   const handleDeliver = (operation) => {
@@ -51,8 +64,7 @@ const ManageCar = () => {
       });
     }
     // Send Data to server
-    updatedData(carUpdate);
-    toast("Delivered Successfully");
+    updatedData(carUpdate, "Delivered");
   };
   // Load one data using id
   useEffect(() => {
