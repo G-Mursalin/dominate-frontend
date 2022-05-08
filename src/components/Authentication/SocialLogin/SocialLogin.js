@@ -2,6 +2,7 @@
 import React from "react";
 // Firebase
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../Firebase/firebase.init";
 // BrowserRouter
 import { useLocation, useNavigate } from "react-router-dom";
@@ -10,13 +11,29 @@ import Loading from "../../Utilities/Loading/Loading";
 const SocialLogin = () => {
   // Firebase Hook
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [userInfo] = useAuthState(auth);
   // Router
   const navigate = useNavigate();
   //Re direct to page
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
   if (user) {
-    navigate(from, { replace: true });
+    // Generate token
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: userInfo.email }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        localStorage.setItem("accessToken", data.token);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error("Error:", error.message);
+      });
   }
 
   if (loading) {

@@ -20,8 +20,10 @@ const OnlyForYou = () => {
   }
 
   return (
-    <section className="px-16 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
-      <h1 className="text-5xl text-center font-bold pb-16">Only For You</h1>
+    <section className="px-16 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
+      <h1 className=" xl:text-5xl font-bold md:text-4xl text-2xl  leading-tight text-center text-gray-800 sm:mb-0 mb-12 pb-16">
+        Only For You
+      </h1>
       <div className="grid max-w-md gap-10 row-gap-8 lg:max-w-screen-lg sm:row-gap-10 lg:grid-cols-3 xl:max-w-screen-lg sm:mx-auto">
         {cars.map((car) => (
           <Card key={car._id} carInfo={car} />

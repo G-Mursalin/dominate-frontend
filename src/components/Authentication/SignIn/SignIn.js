@@ -37,7 +37,7 @@ const SignIn = () => {
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
   if (user) {
-    // Secure api
+    // Generate token
     fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
