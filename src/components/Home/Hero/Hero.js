@@ -32,8 +32,8 @@ const Hero = () => {
             </span>
           </h2>
           <p className="pr-5 mb-5 text-base text-gray-700 md:text-lg">
-            Welcome to DOMINATE! Find information on all vehicles, services,
-            dealers in your area and everything about the cars right here.
+            Welcome to DOMINATE! Find all vehicles, services, dealers in your
+            area and everything about the cars right here.
           </p>
           <div className="flex items-center">
             <Link

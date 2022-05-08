@@ -33,7 +33,7 @@ const SignUp = () => {
 
   if (user) {
     // Generate token
-    fetch("http://localhost:5000/login", {
+    fetch("https://floating-earth-46881.herokuapp.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

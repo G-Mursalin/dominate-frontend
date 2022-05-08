@@ -37,7 +37,9 @@ const MyAddCars = () => {
     setLoading(true);
     const getMyCars = async () => {
       const email = user?.email;
-      const res = await fetch(`http://localhost:5000/mycars?email=${email}`);
+      const res = await fetch(
+        `https://floating-earth-46881.herokuapp.com/mycars?email=${email}`
+      );
       const data = await res.json();
       setData(data);
       setLoading(false);
@@ -64,7 +66,7 @@ const MyAddCars = () => {
   }
   //   Handle Delete Item
   const handelDelete = () => {
-    fetch(`http://localhost:5000/car/${id}`, {
+    fetch(`https://floating-earth-46881.herokuapp.com/car/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
