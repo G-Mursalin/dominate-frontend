@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+// Private repo to public repo
 const Footer = () => {
   return (
     <div className="bg-gray-900">
