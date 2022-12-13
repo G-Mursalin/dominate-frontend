@@ -28,7 +28,7 @@ const AddCars = () => {
     };
 
     // Send data to server
-    fetch("https://floating-earth-46881.herokuapp.com/addcar", {
+    fetch("https://dominate.onrender.com/addcar", {
       method: "POST",
       headers: {
         authorization: `${user.email} ${localStorage.getItem("accessToken")}`,

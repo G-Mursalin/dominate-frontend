@@ -27,7 +27,7 @@ const Table = (props) => {
   const navigate = useNavigate();
   // Handel Delete Functionality
   const handelDelete = () => {
-    fetch(`https://floating-earth-46881.herokuapp.com/car/${_id}`, {
+    fetch(`https://dominate.onrender.com/car/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: `${user.email} ${localStorage.getItem("accessToken")}`,

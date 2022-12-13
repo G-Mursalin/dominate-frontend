@@ -38,7 +38,7 @@ const MyAddCars = () => {
     const getMyCars = async () => {
       const email = user?.email;
       const res = await fetch(
-        `https://floating-earth-46881.herokuapp.com/mycars?email=${email}`
+        `https://dominate.onrender.com/mycars?email=${email}`
       );
       const data = await res.json();
       setData(data);
@@ -66,7 +66,7 @@ const MyAddCars = () => {
   }
   //   Handle Delete Item
   const handelDelete = () => {
-    fetch(`https://floating-earth-46881.herokuapp.com/car/${id}`, {
+    fetch(`https://dominate.onrender.com/car/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `${user.email} ${localStorage.getItem("accessToken")}`,

@@ -33,7 +33,7 @@ const SignUp = () => {
 
   if (user) {
     // Generate token
-    fetch("https://floating-earth-46881.herokuapp.com/login", {
+    fetch("https://dominate.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

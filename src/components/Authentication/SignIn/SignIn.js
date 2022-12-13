@@ -38,7 +38,7 @@ const SignIn = () => {
   let from = location.state?.from?.pathname || "/";
   if (user) {
     // Generate token
-    fetch("https://floating-earth-46881.herokuapp.com/login", {
+    fetch("https://dominate.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ const SignIn = () => {
           </h2>
           <div className="relative mb-4">
             <label htmlFor="email" className="leading-7 text-sm text-gray-600">
-              Email
+              Email(test@gmail.com)
             </label>
             <input
               type="email"
@@ -87,7 +87,7 @@ const SignIn = () => {
               htmlFor="password"
               className="leading-7 text-sm text-gray-600"
             >
-              Password
+              Password(123456789)
             </label>
             <input
               type="password"

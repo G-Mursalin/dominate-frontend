@@ -17,7 +17,7 @@ const ManageCar = () => {
   // Routing
   const navigate = useNavigate();
   const updatedData = (data, status) => {
-    fetch(`https://floating-earth-46881.herokuapp.com/car/${id}`, {
+    fetch(`https://dominate.onrender.com/car/${id}`, {
       method: "PUT",
       headers: {
         authorization: `${user.email} ${localStorage.getItem("accessToken")}`,
@@ -68,7 +68,7 @@ const ManageCar = () => {
   };
   // Load one data using id
   useEffect(() => {
-    fetch(`https://floating-earth-46881.herokuapp.com/car/${id}`)
+    fetch(`https://dominate.onrender.com/car/${id}`)
       .then((res) => res.json())
       .then((data) => setCar(data));
   }, []);
